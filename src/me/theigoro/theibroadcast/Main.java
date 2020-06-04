@@ -17,10 +17,9 @@ public class Main extends JavaPlugin{
 		if (command.getName().equalsIgnoreCase("bc")) {
 			
 			if(args.length == 0)return true;
-            String message = "";
+            String message = null;
             for (int i = 0; i < args.length; i++) {
-            	message  = message + " " + args[i];
-                
+                message = message + args[i];
             }
 
             if (!(sender instanceof Player)) {
