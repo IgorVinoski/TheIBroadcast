@@ -36,7 +36,7 @@ public class Main extends JavaPlugin{
         		sender.getServer().broadcastMessage("§c§l[AVISO]§a " + message);
         	}
         }
-		
+		//recaregamento da configuração
 		
 		if (command.getName().equalsIgnoreCase("bcreload")) {
 			reloadConfig();
