@@ -10,34 +10,48 @@ public class Main extends JavaPlugin{
 
 	@Override
 	public void onEnable() {
-		Bukkit.getConsoleSender().sendMessage("§aBroadcast inicializado");
+		Bukkit.getConsoleSender().sendMessage("Â§aBroadcast inicializado");
 	}
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if (command.getName().equalsIgnoreCase("bc")) {
-			sender.sendMessage("§cUtilize /bc <mensagem>.");
-			
-			
-			if(args.length == 0)return true;
-            String message = null;
-            for (int i = 0; i < args.length; i++) {
-                message = message + args[i];
-            }
-
-            if (!(sender instanceof Player)) {
-                Bukkit.broadcastMessage("§c§l[CONSOLE]§a " + message);
-                
-            }else {
-                if (!sender.hasPermission("broadcast.send")) {
-                sender.sendMessage("§fVocê não tem permissão para executar esse comando.");
-                return true;
-                } else {
-                 sender.getServer().broadcastMessage("§c§l[AVISO]§a " + message);
-                }
-            }
+		
+		// Parte do broadcast
+		if (command.getName().equalsIgnoreCase("bc"))
+			if (args.length == 0) {
+				sender.sendMessage("Â§cUse /bc /mensagem");
+				return true;
+				}  
+		String message = "";
+		
+		for (int i = 0; i < args.length; i++ ) {
+		message = message +" "+ args[i];
+	    }
+		if (!(sender instanceof Player)) {
+            Bukkit.broadcastMessage("Â§cÂ§l[CONSOLE]Â§a " + message);    
+        }else {
+        	if (!sender.hasPermission("broadcast.admin")) {
+        		sender.sendMessage("Â§cVoce precisa ser Admin ou superior para executar esse comando.");
+        		return true;
+        	}else {
+        		sender.getServer().broadcastMessage("Â§cÂ§l[AVISO]Â§a " + message);
+        	}
+        }
+		
+		
+		if (command.getName().equalsIgnoreCase("bcreload")) {
+			reloadConfig();
+			sender.sendMessage("Â§aA configuracao do plugin foi recarregada");
 		}
+		if (!sender.hasPermission("broadcast.admin")) {
+			sender.sendMessage("Â§cVocÃª precisa ser Admin ou superar para executar esse comando.");
+			return true;
+	} 
+	
       return false;
 	}
+	
+		
+ 
 }
 	
 		
