@@ -19,7 +19,7 @@ public class Main extends JavaPlugin{
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
 		// Parte do broadcast
-		if (command.getName().equalsIgnoreCase("bc"))
+		if (command.getName().equalsIgnoreCase("bc")) {
 			if (args.length == 0) {
 				sender.sendMessage("§cUse /bc <mensagem>");
 				return true;
@@ -48,26 +48,28 @@ public class Main extends JavaPlugin{
         	if (!sender.hasPermission("broadcast.admin")) {
         		sender.sendMessage("§cVoce precisa ser Admin ou superior para executar esse comando.");
         		return true;
-        	}else {//broadcast executada pelo PLAYER
+        	}else {//broadcast executada pelo ADMIN
         		sender.getServer().broadcastMessage("§c§l[AVISO]§a " + message);
         	}
         }
+		}
+	
 		//recaregamento da configuração
 		
-		if (command.getName().equalsIgnoreCase("bcreload")) {
+		if (command.getName().equals("reloadbc")) {
 			reloadConfig();
 			sender.sendMessage("§aA configuracao do plugin foi recarregada");
+			if (!sender.hasPermission("broadcast.admin")) {
+				sender.sendMessage("§cVocê precisa ser Admin ou superar para executar esse comando.");
+				return true;
+		} 		
+			
 		}
-		if (!sender.hasPermission("broadcast.admin")) {
-			sender.sendMessage("§cVocê precisa ser Admin ou superar para executar esse comando.");
-			return true;
-	} 
+		
 	
       return false;
 	}
-	
 		
- 
 }
 	
 		
