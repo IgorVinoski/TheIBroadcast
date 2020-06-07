@@ -21,7 +21,7 @@ public class Main extends JavaPlugin{
 		// Parte do broadcast
 		if (command.getName().equalsIgnoreCase("bc"))
 			if (args.length == 0) {
-				sender.sendMessage("§cUse /bc /mensagem");
+				sender.sendMessage("§cUse /bc <mensagem>");
 				return true;
 				}  
 		String message = "";
