@@ -1,8 +1,11 @@
 package me.theigoro.theibroadcast;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.block.NoteBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,17 +25,30 @@ public class Main extends JavaPlugin{
 				return true;
 				}  
 		String message = "";
-		
+
+	
 		for (int i = 0; i < args.length; i++ ) {
 		message = message +" "+ args[i];
 	    }
+		
+		//Envia o som para o player junto com a broadcast
+		for (Player p : getServer().getOnlinePlayers()) {
+			try {
+				p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//Broadcast executada pelo CONSOLE
 		if (!(sender instanceof Player)) {
             Bukkit.broadcastMessage("§c§l[CONSOLE]§a " + message);    
-        }else {
+            
+        }else { 
         	if (!sender.hasPermission("broadcast.admin")) {
         		sender.sendMessage("§cVoce precisa ser Admin ou superior para executar esse comando.");
         		return true;
-        	}else {
+        	}else {//broadcast executada pelo PLAYER
         		sender.getServer().broadcastMessage("§c§l[AVISO]§a " + message);
         	}
         }
