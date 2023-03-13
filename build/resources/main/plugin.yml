@@ -1,0 +1,10 @@
+name: TheIBroadcast
+version: '1.0-SNAPSHOT'
+main: theigoro.theibroadcast.TheIBroadcast
+api-version: 1.19
+description: Plugin de aviso (broadcast) desenvolvido pelo TheIgoro.
+
+
+commands:
+  bc:
+  reloadbc:
